@@ -25,15 +25,20 @@ You'll see, this app works but since it lacks type annotations, the TypeScript c
 │   └── icon.ico
 ├── README.md
 ├── src
-│   ├── actions # Actions for data mutations
+│   ├── __tests__
+│   │   └── integration # Here you need to create your integration tests!
+│   │       └── setup.integration.ts
+│   ├── actions
 │   ├── App.tsx
-│   ├── components # Reusable components
-│   ├── contexts # Context providers
-│   ├── data # Data layer abstractions for loaders
+│   ├── components
+│   ├── contexts
+│   ├── data
 │   ├── index.css
-│   ├── layouts # Shared layouts
-│   ├── main.tsx # Entry point
-│   ├── pages # Top-level components as route elements
+│   ├── layouts
+│   ├── main.tsx
+│   ├── pages
+│   ├── setup.unit.ts
+│   ├── types
 │   ├── utils
 │   └── vite-env.d.ts
 ├── tsconfig.app.json
@@ -227,35 +232,10 @@ You will implement comprehensive testing coverage using the pre-configured Vites
 
 ---
 
-### Testing Utilities and Setup
-
-#### Mock Setup
-
-Create shared mocks in `src/__tests__/mocks/`:
-
-- `apiMocks.ts` - Mock API responses
-- `authMocks.ts` - Mock authentication states
-- `eventsMocks.ts` - Mock events data
-- `routerMocks.ts` - Mock React Router functionality
-
-#### Test Helpers
-
-Create helpers in `src/__tests__/helpers/`:
-
-- `renderWithProviders.tsx` - Render components with necessary providers
-- `mockServer.ts` - MSW server setup for API mocking
-- `testUtils.ts` - Common test utilities and custom matchers
-
-#### Coverage Goals
-
-- **Unit Tests**: 90%+ coverage for utilities, actions, and data functions
-- **Integration Tests**: 80%+ coverage for user workflows and component interactions
-- **Overall**: 85%+ combined coverage
-
 #### Running Tests
 
 ```bash
-# Run all tests
+# Run all tests in watch mode
 npm test
 
 # Run only unit tests
@@ -264,11 +244,8 @@ npm run test:unit
 # Run only integration tests
 npm run test:integration
 
-# Run tests in watch mode
-npm test -- --watch
-
-# Run tests with coverage
-npm test -- --coverage
+# Run tests in a single run
+npm test -- --run
 ```
 
 ---
@@ -302,5 +279,3 @@ npm test -- --coverage
 2. Performance testing
 3. Accessibility testing
 4. Error recovery scenarios
-
-This comprehensive testing plan ensures robust coverage of the Events SPA functionality while providing clear guidance for students to implement both unit and integration tests effectively. Students should focus on unit testing pure functions and simple components, while using integration tests for complex workflows, context providers, and map-related functionality.
