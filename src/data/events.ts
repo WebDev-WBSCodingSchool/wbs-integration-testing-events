@@ -1,4 +1,4 @@
-import type { EventsResponse } from '@/types';
+import type { Event, EventsResponse } from '@/types';
 import { type LoaderFunction } from 'react-router';
 
 const API_URL = import.meta.env.VITE_EVENTS_API_URL;
@@ -16,5 +16,11 @@ export const getAllEvents: LoaderFunction = async ({ request }) => {
   if (!res.ok) {
     throw new Error('Failed to fetch events');
   }
-  return (await res.json()) as EventsResponse;
+  const data = (await res.json()) as EventsResponse;
+
+  const isValid = (n: unknown, max: number) => Number.isFinite(n) && Math.abs(n as number) <= max;
+  data.results = data.results.filter(
+    (e: Event) => isValid(e.latitude, 90) && isValid(e.longitude, 180)
+  );
+  return data;
 };
