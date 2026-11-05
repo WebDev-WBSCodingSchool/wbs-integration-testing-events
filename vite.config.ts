@@ -33,7 +33,7 @@ export default defineConfig({
         test: {
           globals: true,
           name: 'Integration_Tests',
-          root: '__tests__/integration',
+          root: 'src/__tests__/integration',
           environment: 'jsdom',
           setupFiles: ['setup.integration.ts'],
           include: ['**/*.int.test.ts?(x)']
